@@ -1,0 +1,36 @@
+{
+  "name": "as-secp256k1",
+  "version": "0.0.0",
+  "description": "secp256k1 in AssemblyScript",
+  "author": "Markus Schmidt <markus.schmidt.84@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  },
+  "scripts": {
+    "asbuild:debug": "asc assembly/index.ts --target debug",
+    "asbuild:tests": "asc assembly/tests.ts --target tests --exportRuntime",
+    "asbuild:release": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:tests && npm run asbuild:release",
+    "test": "ts-node node_modules/mocha/bin/mocha tests/*.test.ts",
+    "benchmark:secp256k1": "node benchmarks/secp256k1"
+  },
+  "dependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "benchmark": "^2.1.4",
+    "bn.js": "^5.2.1",
+    "chai": "^4.3.6",
+    "elliptic": "^6.5.4",
+    "mocha": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.6",
+    "assemblyscript": "^0.20.13",
+    "ts-node": "^10.9.1"
+  }
+}
